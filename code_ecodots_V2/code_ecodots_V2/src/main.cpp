@@ -31,12 +31,14 @@ float instWeight=0;
 #define ENTERKEY "E"
 int smoke=0;
 //Things to change
-/*
+
 const char * ssid = "Seixas_Net";
 const char * password = "Mayum647";
-*/
+
+/*
 const char * ssid = "Teste";
 const char * password = "12345678";
+*/
 float cum_weight;
 
 // Intervalo de300 millisegundos
@@ -48,22 +50,23 @@ long currentMillis = 0;
 
 NexPage page0 = NexPage(0, 0, "page0");
 
-NexText t0 = NexText(0, 14, "t0");
+NexText t0 = NexText(0, 2, "t0");
+/*
 NexText t1 = NexText(0, 3, "t0");
 NexText t2 = NexText(0, 4, "t0");
-
-NexHotspot m0    = NexHotspot(0, 2, "key0");
-NexHotspot m1    = NexHotspot(0, 3, "key1");
-NexHotspot m2    = NexHotspot(0, 4, "key2");
-NexHotspot m3    = NexHotspot(0, 5, "key3");
-NexHotspot m4    = NexHotspot(0, 6, "key4");
-NexHotspot m5    = NexHotspot(0, 7, "key5");
-NexHotspot m6    = NexHotspot(0, 8, "key6");
-NexHotspot m7    = NexHotspot(0, 9, "key7");
-NexHotspot m8    = NexHotspot(0, 10, "key8");
-NexHotspot m9    = NexHotspot(0, 11, "key9");
-NexHotspot m10    = NexHotspot(0, 12, "keyB");
-NexHotspot m11    = NexHotspot(0, 13, "keyS");
+*/
+NexHotspot m0    = NexHotspot(0, 3, "key0");
+NexHotspot m1    = NexHotspot(0, 4, "key1");
+NexHotspot m2    = NexHotspot(0, 5, "key2");
+NexHotspot m3    = NexHotspot(0, 6, "key3");
+NexHotspot m4    = NexHotspot(0, 7, "key4");
+NexHotspot m5    = NexHotspot(0, 8, "key5");
+NexHotspot m6    = NexHotspot(0, 9, "key6");
+NexHotspot m7    = NexHotspot(0, 10, "key7");
+NexHotspot m8    = NexHotspot(0, 11, "key8");
+NexHotspot m9    = NexHotspot(0, 12, "key9");
+NexHotspot m10    = NexHotspot(0, 14, "keyS");
+NexHotspot m11    = NexHotspot(0, 13, "keyB");
 
 NexHotspot m12    = NexHotspot(2, 2, "St_We");
 NexHotspot m13    = NexHotspot(3, 2, "Co_We");
@@ -93,8 +96,8 @@ NexTouch *nex_listen_list[] =
   &m12,
   &m13,
   &t0,
-  &t1,
-  &t2,
+  //&t1,
+  //&t2,
   NULL
 };
 void EEPROM_writeDouble(int ee, float value)
@@ -124,8 +127,12 @@ void unlock()
 }
 
 void lock(){
-  delay(10000);
+  delay(5000);
+
+
   servo.write(0);
+
+  
 }
 
 void m0PushCallback(void *ptr)
@@ -269,7 +276,7 @@ void m9PushCallback(void *ptr)
  ph_number.toCharArray(buf,len);
  t0.setText(buf);
 }
-void m10PushCallback(void *ptr)
+void m11PushCallback(void *ptr)
 {
   dbSerialPrintln("m6PopCallback");
   dbSerialPrint("ptr = ");
@@ -284,7 +291,7 @@ void m10PushCallback(void *ptr)
  ph_number.toCharArray(buf,len);
  t0.setText(buf);
 }
-void m11PushCallback(void *ptr)
+void m10PushCallback(void *ptr)
 {
  dbSerialPrintln("m6PopCallback");
   dbSerialPrint("ptr = ");
@@ -294,6 +301,7 @@ void m11PushCallback(void *ptr)
    //Set phone number on Screen
  t0.setText("Submitted");
  unlock();
+ delay(2000);
 float instWeight=getWeight();
  //instWeight=120;
  cum_weight+=instWeight;
@@ -312,9 +320,9 @@ float instWeight=getWeight();
 void m12PushCallback(void *ptr)
 {
   delay(1000);
-  t1.setText("1.5 Kg");
+  //t1.setText("1.5 Kg");
   delay(1000);
-  t1.setText("1.5 Kg");
+ // t1.setText("1.5 Kg");
  dbSerialPrintln("m12PopCallback");
   dbSerialPrint("ptr = ");
   dbSerialPrintln((uint32_t)ptr);
@@ -326,9 +334,9 @@ void m12PushCallback(void *ptr)
 void m13PushCallback(void *ptr)
 {
   delay(1000);
-  t2.setText("ED$ 125");
+  //t2.setText("ED$ 125");
   delay(1000);
-  t2.setText("ED$ 125");
+  //t2.setText("ED$ 125");
   dbSerialPrintln("m13PopCallback");
   dbSerialPrint("ptr = ");
   dbSerialPrintln((uint32_t)ptr);
@@ -346,6 +354,7 @@ void setup(void)
   EEPROM_writeDouble(0,0.000);
   pinMode(MQ2_PIN,INPUT);
   pinMode(relayPIN,OUTPUT);
+  pinMode(34, INPUT_PULLUP);
   digitalWrite(relayPIN,LOW);
   nexInit(9600);      // default 115200
   m0.attachPush(m0PushCallback, &m0); 
@@ -377,6 +386,7 @@ void setup(void)
 
 servo.attach(33);
 Serial.println("Ready to go");
+//Serial1.begin(9600,SERIAL_8N1,S1RX,S1TX);
 Serial2.begin(9600,SERIAL_8N1,14,4);
 //Serial2.begin(115200);
 
@@ -393,7 +403,6 @@ void loop(void)
   /*
   currentMillis = millis();
 
-   //Depois de um segundo, mostra-se o número de pulsos.
   if (currentMillis - previousMillis > intervalo) {
     previousMillis = currentMillis;
     getDHT();

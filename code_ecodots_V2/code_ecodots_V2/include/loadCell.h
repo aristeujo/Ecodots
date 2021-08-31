@@ -6,7 +6,7 @@
 
 HX711 scale;
 
-float calibration_factor = 54540; 
+float calibration_factor = -6258;//54540; 
 void setupLoadSensor(){
 scale.begin(DOUT, CLK);
 scale.set_scale();
@@ -20,7 +20,10 @@ Serial.println(zero_factor);
 float getWeight() {
 scale.set_scale(calibration_factor); //Adjust to this calibration factor
 Serial.print("Reading: ");
-float weight=scale.get_units(10)*0.453592;
+float weight=scale.get_units(20)*0.453592;
+if (weight < 0.0){
+  weight = 0.0;
+}
 Serial.print(weight);
 Serial.print(" kg"); //Change this to kg and re-adjust the calibration factor if you follow SI units like a sane person
 Serial.print(" calibration_factor: ");
