@@ -1,0 +1,23 @@
+{
+    "EduardoGuimaraesPedrosaFilho": {
+        "Name": "Eduardo",
+        "Ecodots": 4,
+        "ResidueMeta": 21,
+        "CurrentResidue": 10,
+        "ExternalFaceId": "EduardoGuimaraesPedrosaFilho"
+    },
+    "joaoAristeu": {
+        "Name": "João",
+        "Ecodots": 0,
+        "ResidueMeta": 100,
+        "CurrentResidue": 0,
+        "ExternalFaceId": "joaoAristeu"
+    },
+    "UsuarioAleatorio": {
+        "Name": "Usuário Aleatório",
+        "Ecodots": 3,
+        "ResidueMeta": 100,
+        "CurrentResidue": 0,
+        "ExternalFaceId": "UsuarioAleatorio"
+    }
+}
