@@ -19,7 +19,7 @@ class WasteDoorPageController(ParentControllerClass):
         utils.clickable(self.AppUi.wasteDoorPage_gifContainer).connect(self._PlayAnimation)
         self.AppUi.wasteDoorPage_gifContainer.setStyleSheet("background:none;\n"
                                                       "border-radius: 15px;\n"
-                                                      "border-image: url(assets/face.png);")
+                                                      "border-image: url(assets/porta.jpeg);")
 
     def start(self):
         super().start()
