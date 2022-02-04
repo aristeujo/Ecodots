@@ -1,5 +1,5 @@
 class Constants:
-    WasteDoorTimer = 2.0
+    WasteDoorTimer = 5.0
     WasteWeighingTimer = 2.0
     RewardTimer = 2.0
     FinalTimer = 2.0

@@ -1,6 +1,8 @@
 from datetime import datetime
+import imp
 import utils
 import traceback
+from text_to_speech import createSpeech
 
 from pages import PageConfigModel, ParentControllerClass
 
@@ -9,6 +11,13 @@ class FRPageController(ParentControllerClass):
     def __init__(self, app):
         super().__init__(app)
         self.name = 'menuPage'
+
+    def start(self):
+        super().start()
+        name = self.AppUi.userData['Name'].split(' ', 1)[0]
+        text = "Olá, você é" + name + "?"
+        createSpeech(text)
+        # Your code Here
 
     def _RegisterConfigAndEvents(self):
         self.update_time_date()

@@ -80,7 +80,7 @@ def get_user_name_from_phone_no_api(phone_no):
 
 
 def get_waste_value_from_api():
-    # call your sensor here
+    # call sensor here
     waste_value = 1.38
     return waste_value
 
