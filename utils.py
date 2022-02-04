@@ -81,7 +81,7 @@ def get_user_name_from_phone_no_api(phone_no):
     return name, error
 
 
-def get_waste_value_from_api():
+def get_waste_value_from_sensor():
     # call sensor here
     waste_value = sensors.loadCell_Read()
     return waste_value

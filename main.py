@@ -1,8 +1,11 @@
+import imp
 import sys
 import geocoder
 
 from geopy.geocoders import Nominatim
 from PyQt5.QtWidgets import QApplication
+
+import utils
 
 from main_app import MainApp
 
@@ -15,6 +18,10 @@ def city_name_by_location():
 
 
 def main():
+    
+    utils.sensors.setupHX(5,6)
+    utils.sensors.loadCell_Setup()
+    
     app = QApplication(sys.argv)
     win = MainApp()
     win.set_city_name('Manaus')

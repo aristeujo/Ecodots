@@ -24,9 +24,6 @@ class WasteDoorPageController(ParentControllerClass):
     def start(self):
         super().start()
 
-        utils.sensors.setupHX(5,6)
-        utils.sensors.loadCell_Setup()
-
         if self.timer is not None:
             self.timer.cancel()
             self.timer = None

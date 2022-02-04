@@ -23,7 +23,7 @@ class WasteWeighingPageController(ParentControllerClass):
         super().start()
 
         userData = self.AppUi.userData
-        self.waste_value = utils.get_waste_value_from_api()
+        self.waste_value = utils.get_waste_value_from_sensor()
 
         self.AppUi.wastePage_WasteValue.setText(str(self.waste_value).replace('.', ','))
 
