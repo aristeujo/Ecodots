@@ -84,6 +84,9 @@ def get_user_name_from_phone_no_api(phone_no):
 def get_waste_value_from_sensor():
     # call sensor here
     waste_value = sensors.loadCell_Read()
+
+    if waste_value < 0:
+        waste_value = 0
     return waste_value
 
 

@@ -47,7 +47,8 @@ def loadCell_tare():
 def loadCell_Read():
     try:
         val = hx.get_weight(5)*0.001
-        #print("Massa (Kg): " + str(val))
+        
+        print("Massa (Kg): " + str(val))
         hx.power_down()
         hx.power_up()
         if(val < 0): val = 0.0
