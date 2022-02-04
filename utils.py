@@ -4,6 +4,8 @@ import os, json
 from collectionOperations import search_faces_with_image
 from manage_camera import *
 
+import sensors
+
 script_dir = os.path.dirname(__file__)
 photo_path = os.path.join(script_dir, 'pics/temp_image.jpg')
 json_path = os.path.join(script_dir, "users.json")
@@ -81,7 +83,7 @@ def get_user_name_from_phone_no_api(phone_no):
 
 def get_waste_value_from_api():
     # call sensor here
-    waste_value = 1.38
+    waste_value = sensors.loadCell_Read()
     return waste_value
 
 
